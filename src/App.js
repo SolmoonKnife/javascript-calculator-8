@@ -3,11 +3,12 @@ import { calculator } from "./Calculator.js";
 
 class App {
   async run() {
-    //Input & Print Test
-    const inputString = await Console.readLineAsync("덧셈할 문자열을 입력해주세요.");
-    Console.print(`입력 문자열: ${inputString}`);
+    //Input
+    const inputString = await Console.readLineAsync("덧셈할 문자열을 입력해주세요.\n");
 
-    //Calculator Test
+    //Calculator & Print Test
+    const sum = calculator(inputString);
+    Console.print(`결과 : ${sum}`);
   }
 }
 
