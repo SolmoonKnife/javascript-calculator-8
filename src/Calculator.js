@@ -19,6 +19,15 @@ export function calculator(inputString) {
     } else {
         numbers = trimmedInput.split(normalSlicerRegex).map(Number);
     }
+    // 양의 정수만 입력받아야 하는 비즈니스 룰을 준수하기 잘못된 입력을 예외 처리합니다.
+    // 추출된 수가 음수이거나, 정수가 아니면 잘못된 입력으로 간주합니다.
+    const wrongNumbers = numbers.filter(number =>
+        number < 0 || !Number.isInteger(number)
+    );
+
+    if (wrongNumbers.length > 0) {
+        throw new Error(`[ERROR] 입력 값은 양의 정수만 허용됩니다. 잘못된 값: ${wrongNumbers.join(', ')}`);
+    }
 
     return numbers.reduce((acc, number) => acc + number, 0)
 }
